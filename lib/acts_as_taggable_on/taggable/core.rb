@@ -38,7 +38,7 @@ module ActsAsTaggableOn::Taggable
                      through: context_taggings,
                      source: :tag
 
-            attribute "#{tags_type.singularize}_list".to_sym, ActiveModel::Type::Value.new
+            # attribute "#{tags_type.singularize}_list".to_sym, ActiveModel::Type::Value.new
           end
 
           taggable_mixin.class_eval <<-RUBY, __FILE__, __LINE__ + 1
