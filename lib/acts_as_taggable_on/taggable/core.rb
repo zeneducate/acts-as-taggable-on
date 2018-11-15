@@ -38,7 +38,7 @@ module ActsAsTaggableOn::Taggable
                      through: context_taggings,
                      source: :tag
 
-            # attribute "#{tags_type.singularize}_list".to_sym, ActiveModel::Type::Value.new
+            attribute "#{tags_type.singularize}_list".to_sym, ActiveModel::Type::Value.new
           end
 
           taggable_mixin.class_eval <<-RUBY, __FILE__, __LINE__ + 1
@@ -54,7 +54,7 @@ module ActsAsTaggableOn::Taggable
                 write_attribute("#{tag_type}_list", parsed_new_list)
               end
 
-              set_tag_list_on('#{tags_type}', new_tags)
+              # set_tag_list_on('#{tags_type}', new_tags)
             end
 
             def all_#{tags_type}_list
