@@ -156,7 +156,7 @@ module ActsAsTaggableOn::Taggable
     end
 
     def tag_list_on(context)
-      add_custom_context(context)
+#       add_custom_context(context)
 #       tag_list_cache_on(context)
     end
 
