@@ -7,7 +7,7 @@ module ActsAsTaggableOn::Taggable
       base.extend ActsAsTaggableOn::Taggable::Core::ClassMethods
 
       base.class_eval do
-        attr_writer :custom_contexts
+#         attr_writer :custom_contexts
         after_save :save_tags
       end
 
@@ -46,16 +46,16 @@ module ActsAsTaggableOn::Taggable
               tag_list_on('#{tags_type}')
             end
 
-            def #{tag_type}_list=(new_tags)
-              parsed_new_list = ActsAsTaggableOn.default_parser.new(new_tags).parse
+#             def #{tag_type}_list=(new_tags)
+#               parsed_new_list = ActsAsTaggableOn.default_parser.new(new_tags).parse
 
-              if self.class.preserve_tag_order? || parsed_new_list.sort != #{tag_type}_list.sort
-                set_attribute_was('#{tag_type}_list', #{tag_type}_list)
-                write_attribute("#{tag_type}_list", parsed_new_list)
-              end
+#               if self.class.preserve_tag_order? || parsed_new_list.sort != #{tag_type}_list.sort
+#                 set_attribute_was('#{tag_type}_list', #{tag_type}_list)
+#                 write_attribute("#{tag_type}_list", parsed_new_list)
+#               end
 
-              set_tag_list_on('#{tags_type}', new_tags)
-            end
+#               set_tag_list_on('#{tags_type}', new_tags)
+#             end
 
             def all_#{tags_type}_list
               all_tags_list_on('#{tags_type}')
@@ -141,7 +141,7 @@ module ActsAsTaggableOn::Taggable
 
     def tag_list_cache_set_on(context)
       variable_name = "@#{context.to_s.singularize}_list"
-      instance_variable_defined?(variable_name) && instance_variable_get(variable_name)
+#       instance_variable_defined?(variable_name) && instance_variable_get(variable_name)
     end
 
     def tag_list_cache_on(context)
@@ -164,7 +164,7 @@ module ActsAsTaggableOn::Taggable
       variable_name = "@all_#{context.to_s.singularize}_list"
       return instance_variable_get(variable_name) if instance_variable_defined?(variable_name) && instance_variable_get(variable_name)
 
-      instance_variable_set(variable_name, ActsAsTaggableOn::TagList.new(all_tags_on(context).map(&:name)).freeze)
+#       instance_variable_set(variable_name, ActsAsTaggableOn::TagList.new(all_tags_on(context).map(&:name)).freeze)
     end
 
     ##
@@ -200,7 +200,7 @@ module ActsAsTaggableOn::Taggable
 
       parsed_new_list = ActsAsTaggableOn.default_parser.new(new_list).parse
 
-      instance_variable_set(variable_name, parsed_new_list)
+#       instance_variable_set(variable_name, parsed_new_list)
     end
 
     def tagging_contexts
@@ -209,8 +209,8 @@ module ActsAsTaggableOn::Taggable
 
     def reload(*args)
       self.class.tag_types.each do |context|
-        instance_variable_set("@#{context.to_s.singularize}_list", nil)
-        instance_variable_set("@all_#{context.to_s.singularize}_list", nil)
+#         instance_variable_set("@#{context.to_s.singularize}_list", nil)
+#         instance_variable_set("@all_#{context.to_s.singularize}_list", nil)
       end
 
       super(*args)
