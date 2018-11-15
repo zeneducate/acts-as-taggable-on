@@ -47,18 +47,18 @@ module ActsAsTaggableOn::Taggable
             end
 
             def #{tag_type}_list=(new_tags)
-#               parsed_new_list = ActsAsTaggableOn.default_parser.new(new_tags).parse
+              parsed_new_list = ActsAsTaggableOn.default_parser.new(new_tags).parse
 
-#               if self.class.preserve_tag_order? || parsed_new_list.sort != #{tag_type}_list.sort
-#                 set_attribute_was('#{tag_type}_list', #{tag_type}_list)
-#                 write_attribute("#{tag_type}_list", parsed_new_list)
-#               end
+              if self.class.preserve_tag_order? || parsed_new_list.sort != #{tag_type}_list.sort
+                set_attribute_was('#{tag_type}_list', #{tag_type}_list)
+                write_attribute("#{tag_type}_list", parsed_new_list)
+              end
 
-#               set_tag_list_on('#{tags_type}', new_tags)
+              set_tag_list_on('#{tags_type}', new_tags)
             end
 
             def all_#{tags_type}_list
-              all_tags_list_on('#{tags_type}')
+#               all_tags_list_on('#{tags_type}')
             end
 
             private
